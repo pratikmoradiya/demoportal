@@ -1,0 +1,49 @@
+Worker\UserBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [username,email]
+            message: 
+    properties:
+        email:
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+        username:
+            - Length:
+                min: 6
+                minMessage: "Username has a minimum {{ limit }} characters."
+                max: 25
+                maxMessage: "Username has a have maximum {{ limit }} characters."
+                groups: [Registration]
+            - Regex:
+                pattern: /^[A-Za-z0-9-_!#$]+$/
+                message: "username can contains character, number and special chars like -_!#$"
+        plainPassword:
+            - Length:
+                min: 6
+                minMessage: "Password has a minimum {{ limit }} characters."
+                max: 50
+                maxMessage: "Password has a maximum {{ limit }} characters."
+                groups: [Registration, ResetPassword, ChangePassword]
+#            - Regex:
+#                pattern: /^[A-Za-z0-9!@#$_]+$/
+#                message: "Password can contains characters, numbers and special chars like !@#$_"
+#                groups: [Registration, ResetPassword, ChangePassword]
+        firstname:
+           - NotBlank:
+                message: "Please enter first name."
+                groups: [Registration]
+        lastname:
+           - NotBlank:
+                message: "Please enter last name."
+                groups: [Registration]
+        mobile:
+           - NotBlank:
+                message: "Please enter mobile."
+                groups: [Registration]
+           - Regex:
+                pattern: /^[A-Za-z0-9-#$]+$/
+                message: "Mobile number should only contain alphabetic charaters,numbers '-'."
+        category:
+           - NotBlank:
+                message: "Please select category."
+                groups: [Registration]        

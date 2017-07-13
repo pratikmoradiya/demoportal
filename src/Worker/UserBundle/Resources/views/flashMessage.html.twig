@@ -1,0 +1,37 @@
+{% for type, messages in app.session.flashbag.all() %}
+
+    {% for message in messages %}
+
+        {% if type == 'general' %}
+            <div class="alert alert-general" id="errorAlert"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+
+        {% elseif type == 'notice' %}
+            <div class="alertWarning errorAlert"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+
+        {% elseif type == 'success' %}
+            <div class="alert alert-success" id="errorAlert"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+
+        {% elseif type == 'error' %}
+            <div class="alert alert-error"  id="errorAlert"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+
+        {% elseif type == 'failure' %}
+            <div class="alertError errorAlert"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+
+        {% elseif type == 'help' %}
+            <div class="alert alert-help"><button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ message }}
+            </div>
+       {% endif %}  
+
+    {% endfor %}
+{% endfor %}

@@ -1,0 +1,77 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3 top">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="{{ path('worker_front_user_login')}}" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="{{ path('worker_front_user_register')}}" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="fos_user_registration_register" action="{{ path('worker_front_user_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register" novalidate>
+									<div class="form-group">
+										{{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Username'}}) }}
+                                		<div class="serverError">{% if form_errors(form.username) %}{{ form_errors(form.username) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                		<div class="serverError">{% if form_errors(form.email) %}{{ form_errors(form.email) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                                		<div class="serverError">{% if form_errors(form.plainPassword.first) %}{{ form_errors(form.plainPassword.first) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirm Password'}}) }}
+                                		<div class="serverError">{% if form_errors(form.plainPassword.second) %}{{ form_errors(form.plainPassword.second) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'Firstname'}}) }}
+                                		<div class="serverError">{% if form_errors(form.firstname) %}{{ form_errors(form.firstname) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Lastname'}}) }}
+                                		<div class="serverError">{% if form_errors(form.lastname) %}{{ form_errors(form.lastname) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.category, { 'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+                                		<div class="serverError">{% if form_errors(form.category) %}{{ form_errors(form.category) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.mobile, { 'attr': {'class': 'form-control', 'placeholder': 'Mobile'}}) }}
+                                		<div class="serverError">{% if form_errors(form.mobile) %}{{ form_errors(form.mobile) }}{% endif %}</div>
+                                	</div>
+                                	<div class="form-group">
+										{{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                                		<div class="serverError">{% if form_errors(form.description) %}{{ form_errors(form.description) }}{% endif %}</div>
+                                	</div>
+
+									{{ form_rest(form) }}
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-login" value="Submit">
+											</div>
+										</div>
+									</div>
+									
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+

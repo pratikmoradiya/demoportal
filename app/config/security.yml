@@ -1,0 +1,61 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        # admin:
+        #     context: admin
+        #     pattern: /admin/(.*)
+        #     form_login:
+        #         provider: fos_userbundle
+        #         login_path: admin_login
+        #         check_path: admin_login_check
+        #         default_target_path: worker _admin_homepage
+        #         success_handler:     login_success_handler_mine
+        #         remember_me: true
+        #     logout:
+        #         path: admin_logout
+        #         target: admin_login
+        #     anonymous: true
+        #     remember_me:
+        #         key: "%secret%"
+        #         lifetime: 31536000 # 365 days in seconds
+        #         path: /admin/
+        #         domain: ~
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider # Use form.csrf_provider instead for Symfony <2.4
+                check_path:    worker_front_user_login_check
+                #success_handler: login_user_success_handler
+                #failure_handler: login_user_success_handler
+                #remember_me: true
+            logout:
+                path: worker_front_user_logout
+                target: worker_front_user_login 
+            anonymous:    true
+            remember_me:
+                key: "%secret%"
+                lifetime: 2592000 # 30 days in seconds
+                path: /
+                domain: ~
+                user_provider: fos_userbundle
+        
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/profile, role: ROLE_USER }
+        - { path: ^/admin/, role: ROLE_ADMIN }

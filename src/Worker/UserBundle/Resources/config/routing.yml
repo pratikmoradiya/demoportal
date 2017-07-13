@@ -1,0 +1,27 @@
+worker_user_homepage:
+    path:     /
+    defaults: { _controller: WorkerUserBundle:Default:index }
+
+worker_front_user_login:
+    path:     /login
+    defaults: { _controller: WorkerUserBundle:Security:login }
+    
+worker_front_user_login_check:
+    pattern:  /login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+    
+worker_front_user_logout:
+    pattern:  /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+
+worker_front_user_register:
+    pattern:  /register
+    defaults: { _controller: WorkerUserBundle:Registration:register }
+
+worker_front_user_register_confirmed:
+    pattern:  /register/confirmed
+    defaults: { _controller: WorkerUserBundle:Registration:confirmed }
+
+worker_user_profile:
+    path:     /profile
+    defaults: { _controller: WorkerUserBundle:Default:profile }

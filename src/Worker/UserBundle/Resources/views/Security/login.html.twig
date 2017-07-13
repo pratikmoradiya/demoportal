@@ -1,0 +1,68 @@
+{% extends "WorkerUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block worker %}
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3 top">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="{{ path('worker_front_user_register')}}" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+
+								{% if error %}
+                            		<div class="alert alert-danger alertError" id="errorAlert">
+                                	<button class="close alertBtnClose" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+	                                {{ error.messageKey|trans(error.messageData, 'security') | replace({'Account is disabled.':'Please retrieve BragShare confirmation email to activate account', 'Invalid CSRF token.' : 'Please re-enter login credentials'}) }}
+	                            	</div>           
+                        		{% endif %}
+
+								<form id="login-form" action="{{ path('fos_user_security_check') }}" method="post" role="form" style="display: block;">
+									<input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+									<div class="form-group">
+										<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" tabindex="1" placeholder="Username" class="form-control" />
+									</div>
+									<div class="form-group">
+										<input type="password" id="password" name="_password" required="required" tabindex="2" placeholder="Password" class="form-control" />
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+{% endblock worker %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+	$(document).ready (function(){
+		$("#errorAlert").click(function(){
+        	$("#errorAlert").hide();
+    	});
+
+    });	
+</script>
+{% endblock javascripts %}
+

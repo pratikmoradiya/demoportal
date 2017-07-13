@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>{% block title %}{% endblock title %}</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+        <meta name="keywords" content="{% block meta_keyword %}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+
+        <meta http-equiv="Pragma" content="no-cache">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link href="{{ asset('web/favicon.png') }}" rel="icon" type="image/x-icon"/>
+
+        {% block css %}
+            <link rel="stylesheet" href="{{ asset('bundles/workeruser/css/bootstreap.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('bundles/workeruser/css/style.css') }}"/>
+
+        {% endblock css %}
+
+        {% block javascripts %}
+            <!-- jQuery Core -->
+            <script src="{{ asset('bundles/workeruser/js/jquery-1.9.1.min.js') }}"></script>
+            
+        {% endblock javascripts %}
+
+     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/bragsharefront/images/favicon-icon.png') }}" />
+    </head>
+
+    <body>
+        {% block header %}
+            <div class="header">
+                 <div class="container">
+                      <div class="logo">Worker Portal</div>
+                      {% if app.user %}
+                      <div class="right_box">
+                        <p>Welcome {{app.user.username}}</p>
+                        <span><a href="{{path('worker_front_user_logout')}}">logout</a></span>
+                        <span><a href="{{path('worker_user_profile')}}">profile</a></span>
+                      </div>
+                      {% endif %}
+                 </div>
+            </div>
+        {% endblock header %}
+        {% block worker %}            
+        {% endblock worker %}
+        {% block footer %}    
+        
+        <div class="footer">
+             <div class="container">
+                  <p>worker portal @copyright, 2017 </p>
+             </div>
+        </div>
+        {% endblock footer %}   
+
+</body>
+</html>
